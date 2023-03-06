@@ -1,5 +1,3 @@
-## About Laravel
-
 Requisitos:
 
 1) Docker instalado
