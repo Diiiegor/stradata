@@ -1,5 +1,6 @@
 import Login from "../pages/login/Login.vue";
 import Search from "../pages/search/Search.vue";
+import Logs from "../pages/logs/Logs.vue";
 import {createRouter, createWebHashHistory} from 'vue-router'
 import {isLogged} from "../auth/auth";
 
@@ -7,6 +8,7 @@ const routes = [
     {path: '/', component: Login, name: 'home'},
     {path: '/login', component: Login, name: 'login'},
     {path: '/search', component: Search, name: 'search'},
+    {path: '/logs', component: Logs, name: 'logs'},
     {path: '/:pathMatch(.*)*', name: 'NotFound', component: Login},
 
 ]

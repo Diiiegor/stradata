@@ -2,7 +2,7 @@
     <div class="main">
         <header class="main--header shadow" v-if="showLogOut">
             <RouterLink to="search">Buscador</RouterLink>
-            <a href="">Logs</a>
+            <RouterLink to="logs">Logs</RouterLink>
             <a href="#" @click="handleLogOut">Salir</a>
         </header>
         <router-view/>
