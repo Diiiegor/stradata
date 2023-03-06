@@ -53,6 +53,9 @@ return new class extends Migration {
                         'query' => [
                             'type' => 'text'
                         ],
+                        'driver' => [
+                            'type' => 'keyword'
+                        ],
                         'results' => [
                             'type' => 'text'
                         ],

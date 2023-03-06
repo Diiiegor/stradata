@@ -40,7 +40,7 @@ class ElasticsearchRepository extends BaseRepository implements ISearchable
             ]
         ];
         $results = $this->client->search($query);
-        $this->storeLog(json_encode($query), json_encode($results['hits']['hits']));
+        $this->storeLog(json_encode($query), json_encode($results['hits']['hits']), 'elasticsearch');
         return array_map(fn($item) => (object)$item['_source'], $results['hits']['hits']);
     }
 }

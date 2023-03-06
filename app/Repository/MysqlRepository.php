@@ -17,9 +17,9 @@ class MysqlRepository extends BaseRepository implements ISearchable
             ->selectRaw("MATCH(nombre) AGAINST('$name' IN NATURAL LANGUAGE MODE) AS score")
             ->whereRaw("match(nombre) AGAINST('$name' IN NATURAL LANGUAGE MODE)")
             ->orderByDesc('score')
-            ->paginate(10,null, null, $page);
+            ->paginate(10, null, null, $page);
 
-        $this->storeLog(DB::getQueryLog()[1]['query'],json_encode($query->items()));
+        $this->storeLog(DB::getQueryLog()[1]['query'], json_encode($query->items()), 'mysql');
 
         return $query->items();
     }
