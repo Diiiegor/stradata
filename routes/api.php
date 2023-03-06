@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Api\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\SearchController;
 
@@ -15,4 +15,18 @@ use App\Http\Controllers\Api\SearchController;
 |
 */
 
-Route::post('v1/search',[SearchController::class,'search']);
+
+Route::group(['middleware' => 'api'], function () {
+    //Auth Routes
+    Route::post('login', [AuthController::class, 'login'])->name('login');
+    Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+    Route::post('refresh', [AuthController::class, 'refresh'])->name('refresh');
+
+    //Protected Routes
+    Route::middleware('auth:api')->group(function () {
+        Route::post('search', [SearchController::class, 'search']);
+    });
+
+});
+
+
