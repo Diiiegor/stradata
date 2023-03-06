@@ -10,7 +10,7 @@ use Exception;
 class SearchFactory
 {
     public static $DRIVER_ELASTICSEARCH = 'elasticsearch';
-    public static $DRIVER_MYSQL = 'mysq';
+    public static $DRIVER_MYSQL = 'mysql';
 
     public static function driver(string $driver): ISearchable
     {

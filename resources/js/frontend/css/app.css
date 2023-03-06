@@ -183,3 +183,16 @@ th{
 .text-start{
     text-align: start;
 }
+
+.bordered{
+    border: 1px solid;
+}
+
+.bordered td{
+    border: 1px solid;
+}
+
+
+.scroll-x{
+    overflow-x: scroll;
+}
