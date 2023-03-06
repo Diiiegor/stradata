@@ -4,9 +4,8 @@ namespace App\Repository;
 
 use App\Contracts\ISearchable;
 use App\Singleton\Elasticsearch;
-use Elasticsearch\ClientBuilder;
 
-class ElasticsearchRepository implements ISearchable
+class ElasticsearchRepository extends BaseRepository implements ISearchable
 {
     private $client;
 
@@ -41,7 +40,7 @@ class ElasticsearchRepository implements ISearchable
             ]
         ];
         $results = $this->client->search($query);
-
+        $this->storeLog(json_encode($query), json_encode($results['hits']['hits']));
         return array_map(fn($item) => (object)$item['_source'], $results['hits']['hits']);
     }
 }
