@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Contracts\ISearchable;
+use App\Singleton\Elasticsearch;
 use Elasticsearch\ClientBuilder;
 
 class ElasticsearchRepository implements ISearchable
@@ -11,8 +12,7 @@ class ElasticsearchRepository implements ISearchable
 
     public function __construct()
     {
-        $host = env('ELASTICSEARCH_HOST');
-        $this->client = ClientBuilder::create()->setHosts(["elasticsearch:9200"])->build();
+        $this->client = Elasticsearch::getClient();
     }
 
     public function search(string $name, int $page): array

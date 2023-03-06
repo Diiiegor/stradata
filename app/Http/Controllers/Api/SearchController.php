@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\SearchRequest;
 use App\Services\SearchService;
 use App\Services\SimilarityService;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class SearchController extends Controller
@@ -19,9 +20,10 @@ class SearchController extends Controller
         $this->similarityService = $similarityService;
     }
 
-    public function search(SearchRequest $request): array
+    public function search(SearchRequest $request): JsonResponse
     {
         $people = $this->searchService->getPeople($request->all());
-        return $this->similarityService->filter($people, $request->percentage, $request->name);
+        $filteredPeople = $this->similarityService->filter($people, $request->percentage, $request->name);
+        return $this->successResponse($filteredPeople);
     }
 }
